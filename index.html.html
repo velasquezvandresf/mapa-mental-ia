@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Mapa Mental – Fuentes de Información</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f6f2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 48px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: -.02em;
+  }
+  header p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 6px;
+  }
+  header .badge {
+    display: inline-block;
+    margin-top: 10px;
+    background: #e8f4fd;
+    color: #185FA5;
+    border: 1px solid #b5d4f4;
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .map-container {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 32px rgba(0,0,0,.10);
+    padding: 24px 16px 20px;
+    width: 100%;
+    max-width: 980px;
+    overflow-x: auto;
+  }
+
+  svg { display: block; width: 100%; height: auto; }
+  svg text { font-family: 'Segoe UI', Arial, sans-serif; }
+  .leaf-node { cursor: pointer; }
+  .leaf-node rect { transition: filter .15s, stroke-width 0.1s; }
+  .leaf-node:hover rect { filter: brightness(.96); stroke-width: 1.8; }
+
+  /* Tooltip mejorado */
+  #tooltip {
+    position: fixed;
+    background: #1e2a3a;
+    color: #f0f3f8;
+    border-radius: 16px;
+    padding: 12px 18px;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 280px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s ease;
+    z-index: 1000;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    backdrop-filter: blur(2px);
+    border-left: 4px solid #5DCAA5;
+    font-weight: normal;
+  }
+  #tooltip.show { opacity: 1; }
+  #tooltip strong { display: block; font-weight: 700; margin-bottom: 6px; color: #FFD966; font-size: 14px; }
+
+  footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+  }
+  footer a { color: #378ADD; text-decoration: none; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .map-container { box-shadow: none; border: 1px solid #ddd; }
+    #tooltip { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧠 Mapa mental sobre fuentes de información para IA</h1>
+  <p>Evidencia AA1-EV01. Mapa mental sobre fuentes de información.</p>
+  <p>Elaborado por: Andrés Felipe Velásquez Villanueva</p>
+  <p>Programa: APLICACION DE LA INTELIGENCIA ARTIFICIAL EN LA INTEGRACION DE DATOS (3467224)</p>
+  <span class="badge">✨ Mapa Mental · Haz clic en cada nodo para ver su descripción</span>
+</header>
+
+<div class="map-container">
+<svg viewBox="0 0 940 780" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,.12)"/>
+  </filter>
+  <linearGradient id="g-tipo" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#534AB7"/>
+    <stop offset="100%" stop-color="#AFA9EC"/>
+  </linearGradient>
+  <linearGradient id="g-origen" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#0F6E56"/>
+    <stop offset="100%" stop-color="#5DCAA5"/>
+  </linearGradient>
+  <linearGradient id="g-contenido" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#EF9F27"/>
+    <stop offset="100%" stop-color="#FAC775"/>
+  </linearGradient>
+  <linearGradient id="g-calidad" x1="1" y1="0" x2="0" y2="0">
+    <stop offset="0%" stop-color="#993556"/>
+    <stop offset="100%" stop-color="#ED93B1"/>
+  </linearGradient>
+  <linearGradient id="g-center" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#378ADD"/>
+    <stop offset="100%" stop-color="#5DCAA5"/>
+  </linearGradient>
+</defs>
+
+<!-- ========== CONEXIONES PRINCIPALES (centro a ramas, con ángulos mejorados) ========== -->
+<path d="M 445 370 C 390 310 320 250 258 230" stroke="url(#g-tipo)" stroke-width="3.2" fill="none" opacity=".75"/>
+<path d="M 465 360 C 520 300 590 250 652 230" stroke="url(#g-origen)" stroke-width="3.2" fill="none" opacity=".75"/>
+<path d="M 475 405 C 530 450 595 480 652 500" stroke="url(#g-contenido)" stroke-width="3.2" fill="none" opacity=".75"/>
+<path d="M 415 415 C 360 450 295 480 252 500" stroke="url(#g-calidad)" stroke-width="3.2" fill="none" opacity=".75"/>
+
+<!-- ========== RAMA IZQUIERDA SUPERIOR: TIPOS DE FUENTES ========== -->
+<g filter="url(#sh)">
+  <rect x="156" y="200" width="136" height="48" rx="24" fill="url(#g-tipo)"/>
+</g>
+<text x="224" y="220" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Tipos de</text>
+<text x="224" y="236" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">fuentes</text>
+
+<!-- Líneas desde el borde izquierdo de la rama (x=156) hacia los nodos hoja (enganche en borde derecho de cada hoja) -->
+<path d="M 156 196 C 146 168 140 144 142 128" stroke="#AFA9EC" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 156 220 C 148 220 144 220 142 220" stroke="#AFA9EC" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 156 248 C 146 270 142 284 142 292" stroke="#AFA9EC" stroke-width="2.2" fill="none" opacity=".9"/>
+
+<!-- Nodos hoja TIPOS (izquierda) -->
+<g class="leaf-node" data-title="Fuentes Primarias" data-desc="📌 Datos generados directamente por la fuente original: encuestas, experimentos, sensores, entrevistas. Alta fidelidad y trazabilidad en proyectos de IA.">
+  <rect x="36" y="108" width="106" height="40" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+  <text x="89" y="124" text-anchor="middle" font-size="12" font-weight="600" fill="#3C3489">Primarias</text>
+  <text x="89" y="139" text-anchor="middle" font-size="10" fill="#534AB7">Origen directo</text>
+</g>
+
+<g class="leaf-node" data-title="Fuentes Secundarias" data-desc="📚 Datos procesados o analizados a partir de fuentes primarias: artículos académicos, reportes estadísticos, bases de datos curadas.">
+  <rect x="24" y="200" width="118" height="40" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+  <text x="83" y="216" text-anchor="middle" font-size="12" font-weight="600" fill="#3C3489">Secundarias</text>
+  <text x="83" y="231" text-anchor="middle" font-size="10" fill="#534AB7">Analizadas</text>
+</g>
+
+<g class="leaf-node" data-title="Fuentes Terciarias" data-desc="🗂️ Compilaciones de fuentes secundarias: enciclopedias, catálogos, índices bibliográficos. Útiles para visión panorámica del campo.">
+  <rect x="36" y="272" width="106" height="40" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+  <text x="89" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#3C3489">Terciarias</text>
+  <text x="89" y="303" text-anchor="middle" font-size="10" fill="#534AB7">Compiladas</text>
+</g>
+
+<!-- ========== RAMA DERECHA SUPERIOR: ORIGEN (con espaciado simétrico a la izquierda) ========== -->
+<!-- Izquierda: centro de rama en x=224, distancia desde centro del mapa (445) = 221. Derecha: centro debe estar en 445+221 = 666 -->
+<g filter="url(#sh)">
+  <rect x="594" y="200" width="118" height="48" rx="24" fill="url(#g-origen)"/>
+</g>
+<text x="653" y="220" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Origen</text>
+<text x="653" y="236" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">de la fuente</text>
+
+<!-- Líneas desde borde derecho de rama (x=594+118=712) hacia borde izquierdo de nodos hoja (distancia 16px igual que izquierda: 156-142=14 aprox) -->
+<path d="M 712 196 C 722 168 728 144 726 128" stroke="#5DCAA5" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 712 220 C 720 220 724 220 726 220" stroke="#5DCAA5" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 712 248 C 722 270 726 284 726 292" stroke="#5DCAA5" stroke-width="2.2" fill="none" opacity=".9"/>
+
+<!-- Nodos hoja ORIGEN (derecha) con borde izquierdo en x=726 (igual distancia que izquierda) -->
+<g class="leaf-node" data-title="Fuentes Institucionales" data-desc="🏛️ Producidas por organismos oficiales: ministerios, entidades gubernamentales, organismos internacionales (ONU, BM). Alta credibilidad.">
+  <rect x="726" y="108" width="118" height="40" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+  <text x="785" y="124" text-anchor="middle" font-size="12" font-weight="600" fill="#085041">Institucionales</text>
+  <text x="785" y="139" text-anchor="middle" font-size="10" fill="#0F6E56">Gov · ONG · ONU</text>
+</g>
+
+<g class="leaf-node" data-title="Fuentes Académicas" data-desc="🎓 Revistas científicas, tesis, publicaciones universitarias y repositorios como arXiv. Base del conocimiento revisado por pares en IA.">
+  <rect x="726" y="200" width="110" height="40" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+  <text x="781" y="216" text-anchor="middle" font-size="12" font-weight="600" fill="#085041">Académicas</text>
+  <text x="781" y="231" text-anchor="middle" font-size="10" fill="#0F6E56">Revistas · Tesis</text>
+</g>
+
+<g class="leaf-node" data-title="Fuentes Digitales y Comunitarias" data-desc="🌐 Plataformas web, redes sociales, foros y datasets abiertos (Kaggle, UCI). Grandes volúmenes de datos no estructurados útiles para ML.">
+  <rect x="726" y="272" width="124" height="40" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+  <text x="788" y="288" text-anchor="middle" font-size="12" font-weight="600" fill="#085041">Digitales</text>
+  <text x="788" y="303" text-anchor="middle" font-size="10" fill="#0F6E56">Web · Comunidades</text>
+</g>
+
+<!-- ========== RAMA IZQUIERDA INFERIOR: CRITERIOS DE CALIDAD ========== -->
+<g filter="url(#sh)">
+  <rect x="158" y="476" width="138" height="48" rx="24" fill="url(#g-calidad)"/>
+</g>
+<text x="227" y="496" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Criterios de</text>
+<text x="227" y="512" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">calidad</text>
+
+<!-- Líneas desde borde izquierdo de rama (x=158) hacia borde derecho de nodos hoja (distancia 16px) -->
+<path d="M 158 476 C 148 448 144 424 142 420" stroke="#ED93B1" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 158 500 C 150 500 146 500 142 488" stroke="#ED93B1" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 158 524 C 148 546 144 558 142 558" stroke="#ED93B1" stroke-width="2.2" fill="none" opacity=".9"/>
+
+<!-- Nodos hoja CALIDAD (izquierda) -->
+<g class="leaf-node" data-title="Actualidad" data-desc="⏳ La información debe ser reciente y vigente. En IA, los datos desactualizados pueden generar modelos sesgados o ineficaces para el contexto actual.">
+  <rect x="34" y="400" width="108" height="40" rx="12" fill="#FBEAF0" stroke="#993556" stroke-width="1.2"/>
+  <text x="88" y="416" text-anchor="middle" font-size="12" font-weight="600" fill="#4B1528">Actualidad</text>
+  <text x="88" y="431" text-anchor="middle" font-size="10" fill="#993556">Vigente · Reciente</text>
+</g>
+
+<g class="leaf-node" data-title="Confiabilidad" data-desc="🔒 La fuente debe tener respaldo institucional, autor reconocido o proceso de revisión. Evita propagación de errores en pipelines de datos.">
+  <rect x="24" y="468" width="118" height="40" rx="12" fill="#FBEAF0" stroke="#993556" stroke-width="1.2"/>
+  <text x="83" y="484" text-anchor="middle" font-size="12" font-weight="600" fill="#4B1528">Confiabilidad</text>
+  <text x="83" y="499" text-anchor="middle" font-size="10" fill="#993556">Respaldo · Autor</text>
+</g>
+
+<g class="leaf-node" data-title="Veracidad y Relevancia" data-desc="✅ Los datos deben ser precisos y aplicables al problema de IA en cuestión. La irrelevancia aumenta el ruido y reduce la calidad del modelo.">
+  <rect x="28" y="538" width="118" height="40" rx="12" fill="#FBEAF0" stroke="#993556" stroke-width="1.2"/>
+  <text x="87" y="554" text-anchor="middle" font-size="12" font-weight="600" fill="#4B1528">Veracidad</text>
+  <text x="87" y="569" text-anchor="middle" font-size="10" fill="#993556">Precisa · Relevante</text>
+</g>
+
+<!-- ========== RAMA DERECHA INFERIOR: CONTENIDO (simétrico a CALIDAD) ========== -->
+<!-- Calidad: centro rama x=227, distancia al centro (445) = 218. Contenido debe tener centro en 445+218 = 663 -->
+<g filter="url(#sh)">
+  <rect x="596" y="476" width="118" height="48" rx="24" fill="url(#g-contenido)"/>
+</g>
+<text x="655" y="496" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Tipo de</text>
+<text x="655" y="512" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">contenido</text>
+
+<!-- Líneas desde borde derecho rama (x=596+118=714) hacia borde izquierdo nodos hoja (distancia 16px) -->
+<path d="M 714 476 C 724 448 730 424 732 420" stroke="#FAC775" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 714 500 C 722 500 726 500 732 488" stroke="#FAC775" stroke-width="2.2" fill="none" opacity=".9"/>
+<path d="M 714 524 C 724 546 730 558 732 558" stroke="#FAC775" stroke-width="2.2" fill="none" opacity=".9"/>
+
+<!-- Nodos hoja CONTENIDO (derecha) borde izquierdo en x=732 -->
+<g class="leaf-node" data-title="Contenido Cuantitativo" data-desc="📊 Datos numéricos, series de tiempo, métricas, estadísticas. Fundamentales para algoritmos de machine learning supervisado y no supervisado.">
+  <rect x="732" y="400" width="116" height="40" rx="12" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.2"/>
+  <text x="790" y="416" text-anchor="middle" font-size="12" font-weight="600" fill="#633806">Cuantitativo</text>
+  <text x="790" y="431" text-anchor="middle" font-size="10" fill="#854F0B">Numérico · Medible</text>
+</g>
+
+<g class="leaf-node" data-title="Contenido Cualitativo" data-desc="📝 Texto, opiniones, entrevistas, descripciones narrativas. Clave para NLP, análisis de sentimientos y modelos de lenguaje.">
+  <rect x="732" y="468" width="104" height="40" rx="12" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.2"/>
+  <text x="784" y="484" text-anchor="middle" font-size="12" font-weight="600" fill="#633806">Cualitativo</text>
+  <text x="784" y="499" text-anchor="middle" font-size="10" fill="#854F0B">Texto · Narrativo</text>
+</g>
+
+<g class="leaf-node" data-title="Contenido Multimedia" data-desc="🎨 Imágenes, audio, video, señales. Usados en visión computacional, reconocimiento de voz y modelos multimodales como CLIP o Whisper.">
+  <rect x="732" y="538" width="116" height="40" rx="12" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.2"/>
+  <text x="790" y="554" text-anchor="middle" font-size="12" font-weight="600" fill="#633806">Multimedia</text>
+  <text x="790" y="569" text-anchor="middle" font-size="10" fill="#854F0B">Img · Audio · Video</text>
+</g>
+
+<!-- ========== NODO CENTRAL ========== -->
+<g filter="url(#sh)">
+  <ellipse cx="445" cy="380" rx="76" ry="54" fill="url(#g-center)"/>
+</g>
+<text x="445" y="372" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Fuentes de</text>
+<text x="445" y="392" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Información</text>
+<text x="445" y="408" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.9)">IA · Datos</text>
+
+<!-- ========== LEYENDA (centrada y sin colisiones) ========== -->
+<g transform="translate(200, 680)">
+  <rect x="0" y="0" width="14" height="14" rx="3" fill="url(#g-tipo)"/>
+  <text x="20" y="11" font-size="11" fill="#777">Tipos de fuentes</text>
+  <rect x="150" y="0" width="14" height="14" rx="3" fill="url(#g-origen)"/>
+  <text x="170" y="11" font-size="11" fill="#777">Origen</text>
+  <rect x="250" y="0" width="14" height="14" rx="3" fill="url(#g-contenido)"/>
+  <text x="270" y="11" font-size="11" fill="#777">Contenido</text>
+  <rect x="365" y="0" width="14" height="14" rx="3" fill="url(#g-calidad)"/>
+  <text x="385" y="11" font-size="11" fill="#777">Criterios de calidad</text>
+</g>
+
+</svg>
+</div>
+
+<footer>
+  <p>Fecha: Abril de 2026</p>
+</footer>
+
+<div id="tooltip"></div>
+
+<script>
+  (function() {
+    const tooltip = document.getElementById('tooltip');
+    let hideTimer = null;
+
+    function showTooltip(event, title, description) {
+      if (!title) return;
+      tooltip.innerHTML = '<strong>' + title + '</strong>' + description;
+      const rect = event.currentTarget.getBoundingClientRect();
+      const tooltipWidth = 280;
+      
+      let left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+      let top = rect.top - 12;
+      
+      left = Math.max(12, Math.min(window.innerWidth - tooltipWidth - 12, left));
+      
+      if (top < 10) {
+        top = rect.bottom + 10;
+      }
+      
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+      tooltip.classList.add('show');
+      
+      const actualHeight = tooltip.offsetHeight;
+      if (top + actualHeight + 15 > window.innerHeight) {
+        const newTop = rect.top - actualHeight - 10;
+        if (newTop > 5) {
+          tooltip.style.top = newTop + 'px';
+        } else {
+          tooltip.style.top = rect.bottom + 8 + 'px';
+        }
+      }
+      
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 5000);
+    }
+    
+    const leafNodes = document.querySelectorAll('.leaf-node');
+    leafNodes.forEach(node => {
+      node.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const title = this.dataset.title;
+        const desc = this.dataset.desc;
+        if (title) {
+          showTooltip(e, title, desc);
+        }
+      });
+    });
+    
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.leaf-node')) {
+        tooltip.classList.remove('show');
+        if (hideTimer) clearTimeout(hideTimer);
+      }
+    });
+    
+    window.addEventListener('scroll', function() {
+      tooltip.classList.remove('show');
+      if (hideTimer) clearTimeout(hideTimer);
+    });
+  })();
+</script>
+</body>
+</html>
